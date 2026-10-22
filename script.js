@@ -1,15 +1,7 @@
 // ----- data -----
 
-const trades = [
-  { ticket: 2201, customer: "Polly Gon",  title: "Hollow Knight",       platform: "Switch", offer: 24.00, accepted: true,  tags: ["complete", "case cracked"] },
-  { ticket: 2202, customer: "Terry Bull", title: "Madden 19",           platform: "PS4",    offer: 0.75,  accepted: false, tags: ["disc only", "scratched"] },
-  { ticket: 2203, customer: "Rhea Fund",  title: "Elden Ring",          platform: "PS5",    offer: 18.50, accepted: true,  tags: ["complete"] },
-  { ticket: 2204, customer: "Ray Tracer", title: "Mario Kart 8 Deluxe", platform: "Switch", offer: 31.00, accepted: true,  tags: ["complete", "sealed"] },
-  { ticket: 2205, customer: "Sal Vage",   title: "Madden 19",           platform: "Xbox",   offer: 0.75,  accepted: false, tags: ["disc only"] },
-  { ticket: 2206, customer: "Cam Payne",  title: "Skyrim",              platform: "Xbox",   offer: 6.00,  accepted: true,  tags: ["complete", "no manual"] },
-  { ticket: 2207, customer: "Mark Down",  title: "Madden 19",           platform: "PS4",    offer: 0.75,  accepted: false, tags: ["disc only", "no case"] }
-];
-
+const trades = [];
+let nextTicket = 2301;
 
 // ----- elements -----
 
@@ -22,14 +14,88 @@ const offerBox = document.getElementById("offer");
 const offerButton = document.getElementById("offer-button");
 const offerResult = document.getElementById("offer-result");
 
+const tradeForm = document.getElementById("trade-form");
+const customerBox = document.getElementById("customer");
+const titleBox = document.getElementById("title");
+const takeButton = document.getElementById("take-button");
+
 
 // ----- functions -----
 
+// for(let i = 0; i < trades.length; i++) {
+//      const row = document.createElement("li");
+//      row.textContent = `${trades[i].ticket } - ${trades[i].customer} - $${trades[i].offer.toFixed(2)}`;
+
+//      if (trades[i].accepted === false) {
+//       row.classList.add("rejected");
+//      }
+
+//      tradeList.appendChild(row);
+// }
+
+// ^^^^^^^^^^^^^^^Same effect^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+function drawTrades() {
+tradeList.replaceChildren();
+
+  if (trades.length === 0) {
+
+    payout.textContent = "Paid out today: $0.00";
+
+
+    const empty = document.createElement("li");
+    empty.textContent = "No trades yet today.";
+    empty.classList.add("empty");
+    tradeList.appendChild(empty);
+    return;
+  }
+
+  let total = 0;
+
+
+  trades.forEach(function (trade) {
+    const row = document.createElement("li");
+    row.textContent = `${trade.ticket} - ${trade.customer} - $${trade.offer.toFixed(2)}`;
+
+    if (trade.accepted === false) {
+      row.classList.add("rejected");
+    }
+    else {
+      total += trade.offer;
+    }
+
+    tradeList.appendChild(row);
+  });
+ 
+  payout.textContent = `Paid out today: $${total.toFixed(2)}`;
+}
 
 
 // ----- listeners -----
 
+tradeForm.addEventListener("submit", function (event){
+  event.preventDefault();
 
+  if(customerBox.value === "" || titleBox.value === "" || offerBox.value === "") {
+    return;
+  }
+  
+    trades.push({
+      ticket: nextTicket,
+      customer: customerBox.value.trim(),
+      title: titleBox.value.trim(),
+      offer: Number(offerBox.value),
+      accepted: true
+    });
+
+    nextTicket++;
+
+    customerBox.value = "";
+    titleBox.value = "";
+    offerBox.value = "";
+
+  drawTrades();
+});
 
 // ----- run at load -----
 
@@ -44,18 +110,18 @@ const offerResult = document.getElementById("offer-result");
 //      tradeList.appendChild(row);
 // }
 
-  // ^^^^^^^^^^^^^^^Same effect^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// ^^^^^^^^^^^^^^^Same effect^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-   trades.forEach(function (trade){
-     const row = document.createElement("li");
-     row.textContent = `${trade.ticket } - ${trade.customer} - $${trade.offer.toFixed(2)}`;
+trades.forEach(function (trade) {
+  const row = document.createElement("li");
+  row.textContent = `${trade.ticket} - ${trade.customer} - $${trade.offer.toFixed(2)}`;
 
-     if (trade.accepted === false) {
-      row.classList.add("rejected");
-     }
+  if (trade.accepted === false) {
+    row.classList.add("rejected");
+  }
 
-     tradeList.appendChild(row);
+  tradeList.appendChild(row);
 });
 
 

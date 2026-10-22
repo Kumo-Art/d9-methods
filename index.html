@@ -19,11 +19,18 @@
 
   <p id="lookup-result"></p>
 
-  <div class="my-4">
-    <label for="offer" class="block mb-1">Offer amount</label>
-    <input id="offer" type="text" class="border p-2">
-    <button id="offer-button" class="border px-3 py-1">Check</button>
-  </div>
+  <form id="trade-form" class="my-4">
+  <label for="customer" class="block mb-1">Customer</label>
+  <input id="customer" type="text" class="border p-2">
+
+  <label for="title" class="block mb-1 mt-2">Game</label>
+  <input id="title" type="text" class="border p-2">
+
+  <label for="offer" class="block mb-1 mt-2">Offer</label>
+  <input id="offer" type="text" class="border p-2">
+
+  <button id="take-button" type="submit" class="border px-3 py-1 mt-2">Take the trade</button>
+</form>
 
   <p id="offer-result"></p>
 

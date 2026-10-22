@@ -62,3 +62,36 @@
 
 ## .filter() and .find()
 - filter -> a new array of all the ones where we returned true.
+- find -> the item itself, first match only.
+
+
+
+
+# States Notes
+
+## Where values live
+- Numbers, strings, booleans: the variable holds the value. Copy = seperate.
+- Arrays and objects: the variable holds where it is. Copy = same thing.
+- const protects the name, not the contents.
+- trades.push(x) is fine. trades = [] throws error.
+
+
+## The empty state
+- Not broken + looks broken = the same thing to a user.
+- Empty is a state we design. Every list has one.
+
+
+## submit and preventDefault
+- A form's default job is to send it's contents and load a new page.
+- event.preventDefault() stops it.
+- Listen for "submit" on the form, not "click" on the button.
+- "submit" also fires when somebody presses enter in an input.
+
+
+## .push()
+- trade.push(thing) add to the end of the array.
+
+
+## Derived values
+- The payout isn't stored anywhere. It's calculated in the redraw, every time.
+- Storing it = two things that can disagree.
