@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Pawn</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="p-6">
+
+  <h1 class="text-2xl font-bold">Pixel Pawn</h1>
+
+  <div class="my-4">
+    <label for="lookup" class="block mb-1">Customer name</label>
+    <input id="lookup" type="text" class="border p-2">
+    <button id="lookup-button" class="border px-3 py-1">Find</button>
+  </div>
+
+  <p id="lookup-result"></p>
+
+  <div class="my-4">
+    <label for="offer" class="block mb-1">Offer amount</label>
+    <input id="offer" type="text" class="border p-2">
+    <button id="offer-button" class="border px-3 py-1">Check</button>
+  </div>
+
+  <p id="offer-result"></p>
+
+  <h2 class="text-xl mt-4">Today's trades</h2>
+
+  <ul id="trade-list" class="list-disc pl-5"></ul>
+
+  <p id="payout"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
