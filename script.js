@@ -113,28 +113,3 @@ tradeForm.addEventListener("submit", function (event){
 // ^^^^^^^^^^^^^^^Same effect^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
-trades.forEach(function (trade) {
-  const row = document.createElement("li");
-  row.textContent = `${trade.ticket} - ${trade.customer} - $${trade.offer.toFixed(2)}`;
-
-  if (trade.accepted === false) {
-    row.classList.add("rejected");
-  }
-
-  tradeList.appendChild(row);
-});
-
-
-const rejected = trades.filter(function (trade) {
-  return trade.accepted === false;
-})
-
-
-console.log(rejected);
-
-
-const ticket = trades.find(function (trade) {
-  return trade.ticket === 2204;
-});
-
-console.log(ticket)
